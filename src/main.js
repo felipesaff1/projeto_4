@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('[data-tab-button]');
+    const questions = document.querySelectorAll('[data-faq-question]');
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', function (botao) {
@@ -27,4 +28,21 @@ document.addEventListener('DOMContentLoaded', function () {
             buttons[i].classList.remove('shows__tabs__button--is-active');
         }
     }
+
+    questions.forEach(function (question) {
+        question.addEventListener('click', function () {
+            const item = question.parentElement;
+            const isOpen = item.classList.contains('faq__questions__item--is-open');
+
+            // Fecha todas as perguntas
+            document.querySelectorAll('.faq__questions__item').forEach(function (el) {
+                el.classList.remove('faq__questions__item--is-open');
+            });
+
+            // Se a pergunta clicada não estava aberta, abre ela
+            if (!isOpen) {
+                item.classList.add('faq__questions__item--is-open');
+            }
+        });
+    });
 });
