@@ -5,6 +5,8 @@
 @use 'available-devices';
 @use 'faq';
 @use 'footer';
+@use 'header';
+@use 'sass:color';
 
 @font-face {
     font-family: Avenir;
@@ -23,6 +25,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Avenir, sans-serif;
+    list-style: none;
 }
 
 body{
@@ -38,29 +41,48 @@ body{
 
 .text--big{
     @include text(18px);
+    @media (max-width:768px) {
+        @include text(15px);
+    }
 }
 
 .text {
     @include text;
+    @media (max-width:768px) {
+        @include text(14px);
+    }
 }
 
 .text--small{
     @include text(12px);
+    @media (max-width:768px) {
+        @include text(11px);
+    }
 }
 
 .title--big{
     @include text(44px);
     color:variaveis.$corTextoSecundario;
+    @media (max-width:768px) {
+        @include text(26px);
+    }
 }
 
 .title{
     @include text(40px);
     color:variaveis.$corTextoSecundario;
+
+    @media (max-width:768px) {
+        @include text(24px);
+    }
 }
 
 .title--small{
     @include text(28px);
     color:variaveis.$corTextoSecundario;
+    @media (max-width:768px) {
+        @include text(22px);
+    }
 }
 
 .link-text{
@@ -70,22 +92,54 @@ body{
 
 .button{
     cursor: pointer;
-    display: block;
+    align-items: center;
+    justify-content: center;
+    display: flex;
     width: 100%;
     height: 60px;
     font-size: 18px;
     color: variaveis.$corTextoSecundario;
     background-color: variaveis.$corBotao;
     border-radius: 4px;
-    margin-top: 2vw;
-    margin-bottom: 8px;
+    text-decoration: none;
+    padding: 8px 14px;
+    letter-spacing: 1px;
+    border: 1px solid variaveis.$corBotao;
+
+    &:hover {
+        background-color: color.adjust(variaveis.$corBotao, $lightness: 3%);
+    }
+
+    &--secondary {
+        background-color: variaveis.$corBotaoSecundario;
+
+        &:hover {
+            background-color: color.adjust(variaveis.$corBotaoSecundario, $lightness: 3%);
+        }
+    }
+
+    &--dark {
+        background-color: rgba(variaveis.$corBotaoDark, 0.8); // Substitua se você quiser usar variável
+        border: 1px solid variaveis.$corTextoSecundario;
+        color: variaveis.$corTextoSecundario;
+
+        &:hover {
+            background-color: color.adjust(variaveis.$corTextoSecundario, $lightness: 3%);
+            color: variaveis.$corDeFundo;
+        }
+    }
 }
+
 
 .image-text-section{
     padding: 5.6vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
 
     img{
         max-width: 100%;
@@ -116,6 +170,12 @@ body{
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+            @media (max-width: 768px) {
+                position: relative;
+                left: 0;
+                width: 100%;
+            }
         }
     }
 }
